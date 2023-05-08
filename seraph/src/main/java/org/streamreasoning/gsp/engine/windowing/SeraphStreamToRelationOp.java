@@ -26,7 +26,8 @@ import java.util.stream.Collectors;
 
 public class SeraphStreamToRelationOp<T1, T2> extends ObservableStreamToRelationOp<T1, T2> {
 
-    private final long a, b;
+    private final long a,b;
+
     private static final Logger log = Logger.getLogger(SeraphStreamToRelationOp.class);
     private GraphDatabaseService db;
     private Map<Window, Content<T1, T2>> windows;
@@ -160,5 +161,13 @@ public class SeraphStreamToRelationOp<T1, T2> extends ObservableStreamToRelation
     @Override
     public TimeVarying<T2> get() {
         return new TimeVaryingPGraph(this, iri, PGraphImpl.createEmpty());
+    }
+
+    public long getA() {
+        return a;
+    }
+
+    public long getB() {
+        return b;
     }
 }

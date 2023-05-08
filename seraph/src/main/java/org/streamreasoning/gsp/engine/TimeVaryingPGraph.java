@@ -37,5 +37,9 @@ public class TimeVaryingPGraph<T1, T2> implements TimeVarying<PGraph> {
         return name.getIRIString();
     }
 
+    public StreamToRelationOp<T1, T2> getOp() {
+        return op;
+    }
+
 
 }

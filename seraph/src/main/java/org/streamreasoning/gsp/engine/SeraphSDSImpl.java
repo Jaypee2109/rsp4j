@@ -75,4 +75,8 @@ final public class SeraphSDSImpl implements SDS<PGraph> {
 
         return null;
     }
+
+    public List<TimeVarying<PGraph>> getGraphs() {
+        return graphs;
+    }
 }

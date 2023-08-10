@@ -1,10 +1,12 @@
 package org.streamreasoning.rsp4j;
 
+import com.google.gson.Gson;
 import org.opencypher.memcypher.api.MemCypherGraph;
 import org.opencypher.memcypher.api.MemCypherSession;
 import org.opencypher.memcypher.apps.Demo;
 import org.opencypher.memcypher.apps.DemoData;
 import org.opencypher.okapi.api.graph.CypherResult;
+import org.opencypher.okapi.api.graph.PropertyGraph;
 import org.opencypher.okapi.impl.util.PrintOptions;
 import org.streamreasoning.gsp.data.Source;
 import scala.Console;
@@ -18,17 +20,16 @@ public class mem_cypher_example {
     public static void main(String[] args) throws FileNotFoundException {
 
         MemCypherSession session = MemCypherSession.create();
+        //ToDo either build a conversion layer from pgraph to memCypherGraph or directly load jsons as MemCypherGraphs
 
-        String fileName = "test.json";
+        String fileName = "demo.json";
         //Create a property graph using the test.json as a base
         URL url = Source.class.getClassLoader().getResource(fileName);
         FileReader fileReader = new FileReader(url.getPath());
-      //  PGraph pGraph = PGraphImpl.fromJson(fileReader);
 
-        //ToDo either build a conversion layer from pgraph to memCypherGraph or directly load jsons as MemCypherGraphs
-        //Gson gson = new Gson();
-        //PropertyGraph graph = gson.fromJson(fileReader, MemCypherGraph.class);
+        Gson gson = new Gson();
 
+        MemCypherGraph json_graph = gson.fromJson(fileReader, MemCypherGraph.class);
 
         MemCypherGraph graph = MemCypherGraph.create(DemoData.nodes(), DemoData.rels(), session);
 

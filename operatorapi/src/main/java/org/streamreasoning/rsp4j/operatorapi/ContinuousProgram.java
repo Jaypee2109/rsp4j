@@ -142,6 +142,11 @@ public class ContinuousProgram<I, W, R, O> extends ContinuousQueryExecutionObser
   }
 
   @Override
+  public DataStream<I>[] instream() {
+    return new DataStream[0];
+  }
+
+  @Override
   public TimeVarying<Collection<R>> output() {
     return null;
   }

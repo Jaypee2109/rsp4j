@@ -91,6 +91,11 @@ public class JenaContinuousQueryExecution extends Observable implements Observer
         return out;
     }
 
+    @Override
+    public DataStream<Graph>[] instream() {
+        return new DataStream[0];
+    }
+
     private Table apply2(Binding eval, Long now) {
         Table table = TableFactory.create();
 

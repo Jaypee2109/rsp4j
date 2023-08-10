@@ -181,6 +181,11 @@ public class RSPQLJenaQuery extends Query implements ContinuousQuery {
     }
 
     @Override
+    public String getR2R() {
+        return null;
+    }
+
+    @Override
     public StreamToRelationOp[] s2r() {
         return new StreamToRelationOp[0];
     }
@@ -192,6 +197,11 @@ public class RSPQLJenaQuery extends Query implements ContinuousQuery {
 
     @Override
     public List<Aggregation> getAggregations() {
+        return null;
+    }
+
+    @Override
+    public List<String> getInputStreams() {
         return null;
     }
 

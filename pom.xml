@@ -27,6 +27,7 @@
         <module>reasoning</module>
         <module>mapping</module>
         <module>seraph</module>
+        <module>mem-cypher</module>
     </modules>
 
     <dependencyManagement>

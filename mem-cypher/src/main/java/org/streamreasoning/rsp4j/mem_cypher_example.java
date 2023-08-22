@@ -24,13 +24,13 @@ public class mem_cypher_example {
 
         String fileName = "demo.json";
         //Create a property graph using the test.json as a base
-        URL url = Source.class.getClassLoader().getResource(fileName);
+       /* URL url = Source.class.getClassLoader().getResource(fileName);
         FileReader fileReader = new FileReader(url.getPath());
 
         Gson gson = new Gson();
 
         MemCypherGraph json_graph = gson.fromJson(fileReader, MemCypherGraph.class);
-
+*/
         MemCypherGraph graph = MemCypherGraph.create(DemoData.nodes(), DemoData.rels(), session);
 
         String query = "" +

@@ -8,6 +8,7 @@ import org.opencypher.memcypher.api.value.MemNode;
 import org.opencypher.memcypher.api.value.MemRelationship;
 import org.opencypher.memcypher.apps.Demo;
 import org.opencypher.okapi.api.graph.CypherResult;
+import org.opencypher.okapi.api.value.CypherValue;
 import org.opencypher.okapi.impl.util.PrintOptions;
 import org.streamreasoning.gsp.data.Source;
 import scala.Console;
@@ -20,9 +21,14 @@ import java.lang.reflect.Type;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 
 public class GraphLoader {
+
+    // NEW: MemNodeWrapper class
+
 
     public static MemCypherGraph loadGraphFromFile(String jsonFilePath, MemCypherSession session) throws IOException {
         FileReader fileReader = new FileReader(jsonFilePath);
@@ -42,6 +48,8 @@ public class GraphLoader {
         }
     }
 
+
+
     private static class MemCypherGraphDeserializer implements JsonDeserializer<MemCypherGraph> {
         private final MemCypherSession session;
 
@@ -53,7 +61,6 @@ public class GraphLoader {
             JsonObject jsonObject = json.getAsJsonObject();
             JsonArray nodesJsonArray = jsonObject.getAsJsonArray("nodes");
             JsonArray relsJsonArray = jsonObject.getAsJsonArray("edges");
-
             // Cast List to the expected types before converting to Seq
             List<MemNode> memNodes = context.deserialize(nodesJsonArray, new TypeToken<List<MemNode>>() {}.getType());
             List<MemRelationship> memRels = context.deserialize(relsJsonArray, new TypeToken<List<MemRelationship>>() {}.getType());
@@ -69,7 +76,7 @@ public class GraphLoader {
     public static void main(String[] args) {
         try{
             MemCypherSession session = MemCypherSession.create();
-            String fileName = "demo.json";
+            String fileName = "demo_2.json";
             //Create a property graph using the test.json as a base
             URL url = Source.class.getClassLoader().getResource(fileName);
             MemCypherGraph graph = loadGraphFromFile(url.getPath(), session);
@@ -87,3 +94,5 @@ public class GraphLoader {
         }
     }
 }
+
+
